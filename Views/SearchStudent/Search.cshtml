@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewData["Title"] = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Search</h1>
+
+<form asp-action="Search">
+    <input type="text" name="txtName" placeholder="Search by Student Name"/>
+    <input type="submit" value="Search" class="btn btn-primary"/>
+</form>
+@if (ViewData["students"] != null)
+{
+    <table class="table-responsive-lg">
+        <tr>
+            <th>Student Id</th>
+            <th>Student Name</th>
+            <th>Contact</th>
+            <th>Gender</th>
+            <th>Course</th>
+        </tr>
+        @foreach (var item in (List<MyStudent>)ViewData["students"])
+        {
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.StudentId)</td>
+        <td>@Html.DisplayFor(modelItem => item.StudentName)</td>
+        <td>@Html.DisplayFor(modelItem => item.Contact)</td>
+        <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+        <td>@Html.DisplayFor(modelItem => item.CourseName)</td>
+    </tr>
+        }
+    </table>
+}
